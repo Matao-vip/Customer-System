@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>客服服务系统</title>
+    <meta name="description" content="客服服务系统，由Marco个人开发" />
+    <meta name="keywords" content="客服，系统，人工服务，智能机器人" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <meta http-equiv="expires" content="0">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_658796_or3t32rx0uo6flxr.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src='lib/jquery-3.3.1/jquery-3.3.1.min.js'></script>
+    <script type="text/javascript" src='lib/bootstrap-3.3.7/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src='lib/dateFormat.js'></script>
+    <script type="text/javascript">
+        // 响应式处理
+        if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+            if(window.location.href.indexOf("?mobile") < 0){
+                try{
+                    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
+                        window.location.href="//m.ds.cn";
+                    }else if(/iPad/i.test(navigator.userAgent)){
+                        window.location.href="//m.ds.cn";
+                    }else{
+                    }
+                }catch(e){}
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="chatWindow">
+        <div class="top">
+            <span class="Name">客服机器人小码</span>
+            <div class="ope">
+                <b class="iconfont marco-zuixiaohua"></b>
+                <b class="iconfont marco-zuidahua changewindow"></b>
+                <b class="iconfont marco-guanbi"></b>
+            </div>
+        </div>
+        <div class="body">
+            <div class="code"><img src="img/z-code.png" height="77" width="295"/></div>
+            <div class="msglist">
+                <ul>
+                    <li class="clfix"><span class="fl robot triangle-left">您好！我是客服机器人~小码~，请问有什么可以帮您？</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="tab">
+                <i class="iconfont marco-xiaoliansmiley40"></i>
+                <i class="iconfont marco-tupian"></i>
+                <i class="iconfont marco-wenjian"></i>
+                <i class="iconfont marco-baocun"></i>
+                <i class="iconfont marco-shoucang"></i>
+                <i class="iconfont marco-service"></i>
+            </div>
+            <textarea class="question" placeholder="我想问..."></textarea>
+            <div class="bottom">
+                <h4>灰星科技</h4>
+                <input type="button" value="发送" />
+                <span class="send_hint">Ctrl+Enter</span>
+            </div>
+        </div>
+    </div>
+    <div id="minwidow">客服机器人小码（会话中...）</div>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
