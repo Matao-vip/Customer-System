@@ -4,6 +4,8 @@ jQuery(function($){
     var $minWindow = $('#minwidow');
     var $msglist = $('.body .msglist ul');
 
+    var msgidx = -1;  // 消息历史，默认无
+
     // 拖拽效果
     $top.mousedown(function(e){
         // var e = e || window.event;  // 已经用了jq，不考虑兼容性
@@ -44,18 +46,20 @@ jQuery(function($){
         $chatWindow.slideDown();
     })
 
+    var msgArr = [];  // 记录用户发送消息的记录
     // 问答系统
     function QAsystem(){
-        var val = $('.question').val();
-        if(val.trim() == '') return false;
+        var val = $('.question').val().trim();
+        if(val == '') return false;
         // 生成问题列表
         var Qtime = new Date();
         Qtime=Qtime.format('YYYY-MM-DD hh:mm')
         $('<li/>').addClass('clfix Time').html('<span class="fr time">'+Qtime+'</span>').appendTo($msglist);
         var $Qli = $('<li/>').addClass('clfix').html('<span class="fr customer triangle-right">'+val+'</span>').appendTo($msglist);
+        msgArr.unshift(val);
         $('.body')[0].scrollTop = $('.body')[0].scrollHeight;
         $('.question').val('').focus();
-
+        msgidx = -1;
         // 生成回答列表
         setTimeout(function(){
             $.ajax({
@@ -83,7 +87,7 @@ jQuery(function($){
             });
         },1000)
     }
-    
+
     // 点击发送
     $('.foot .bottom input').click(function(){
         QAsystem();
@@ -107,8 +111,37 @@ jQuery(function($){
     $('.foot .bottom input').mouseout(function(){
         $('.send_hint').hide();
     })
-    // Ctrl+Enter发送
+
+    // 键盘Ctrl+Enter发送消息
+    // 上下键选择消息历史
     window.onkeydown=function(e){
-        if(e.ctrlKey && e.keyCode===13) QAsystem();
+        if(e.ctrlKey && e.keyCode===13){ 
+            QAsystem();
+        }else if(e.keyCode === 38){ // 向上选择消息记录
+            if(msgArr == []){
+                return false;
+            }else{
+                msgidx++;
+                if(msgidx >= msgArr.length-1) msgidx=msgArr.length-1;
+                if(msgidx <= -1){
+                    $('.question').val('');
+                }else{
+                    $('.question').val(msgArr[msgidx]);
+                }
+                
+            }
+        }else if(e.keyCode === 40){ // 向下选择消息记录
+            if(msgArr == []){
+                return false;
+            }else{
+                msgidx--;
+                if(msgidx <= -1) msgidx = -1;
+                if(msgidx <= -1){
+                    $('.question').val('');
+                }else{
+                    $('.question').val(msgArr[msgidx]);
+                }
+            }
+        }
     }
 })

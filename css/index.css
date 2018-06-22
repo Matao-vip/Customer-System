@@ -12,6 +12,7 @@
 #chatWindow .body{flex:1;overflow: auto;padding: 10px;}
 #chatWindow .body .code img{display: block;margin: 10px auto;}
 #chatWindow .body .msglist ul{list-style: none;margin: 0;padding: 0;}
+#chatWindow .body .msglist ul li{margin-bottom: 5px;}
 #chatWindow .body .msglist ul li.Time{margin: 10px 0 0;}
 #chatWindow .body .msglist ul li .robot{position: relative;display: inline-block;padding: 5px;background: #fff;border:1px solid #ccc;border-radius:4px;}
 #chatWindow .body .msglist ul li .customer{position: relative;display: inline-block;padding: 5px;background: #58bc58;border:1px solid #ccc;border-radius:4px;}
