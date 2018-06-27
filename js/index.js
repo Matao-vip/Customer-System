@@ -68,6 +68,7 @@ jQuery(function($){
                data: "mes="+val,
                success: function(res){
                     var res = res.results;
+                    console.log(res);
                     $('<li/>').addClass('clfix Time').html('<span class="fl time">'+Qtime+'</span>').appendTo($msglist);
                     res.forEach((item,idx)=>{
                         var $Ali = $('<li/>').addClass('clfix');
@@ -77,6 +78,17 @@ jQuery(function($){
                             $Ali.html(`<img src="${item.values.image}" class="fl"/>`);
                         }else if(item.resultType == 'text'){
                             $Ali.html(`<span class="fl robot triangle-left">${item.values.text}</span>`);
+                        }else if(item.resultType == 'news'){
+                            var newsArr = item.values.news;
+                            var ol = $('<ol class="news"></ol>');
+                            var newshtml = newsArr.map((items,idx)=>{
+                                return `<li class="clfix">
+                                    <a href="${items.detailurl}" class="name" target="_blank">${items.name}</a>
+                                    <span class="info">${items.info}</span>
+                                </li>`
+                            }).join('')
+                            ol.html(newshtml);
+                            $Ali.html(ol);
                         }else{
                             $Ali.html('<span class="fl robot triangle-left">你说什么？风太大我看不见哈哈哈~~~！</span>');
                         }
